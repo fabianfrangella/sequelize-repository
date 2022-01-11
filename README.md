@@ -5,6 +5,7 @@ sequelize-repository is a simple implementation of the repository pattern for se
 - [SQRepository](#SQRepository)
 - [Named Queries](#Named-Queries)
 - [Criteria](#Criteria)
+- [TransactionRunner](#TransactionRunner)
 
 #SQRepository
 The SQRepository is the entry point to the library, it contains all repository methods, you must extend from this class to use it.
@@ -69,4 +70,15 @@ const criteria = builder.add('client_id', clientId, { [Op.eq]: clientId })
    .add('request_id', null, { [Op.ne]: null })
    .build()
 criteria.getCriteria() // { client_id:  { [Op.eq]: 1234 }, created_date: { [Op.eq]: 10/10/2021 } ...}
+```
+###TransactionRunner
+The transaction runner is a solution to handle the sequelize transactions in just one place.
+In order to use the "save" method of the repository you must execute it inside a transaction.
+Example:
+```
+const db = require('../models')
+const result = await TransactionRunner.run(db, async (t) => {
+    const entity = await repository.save({ id: 1, name: 'John', lastName: 'Doe' }, t)
+    return entity
+})
 ```
