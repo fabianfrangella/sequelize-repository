@@ -23,16 +23,10 @@ const initNamedQueries = (that) => {
         const splitted = n.split("By")
         const joined = splitted.join("")
         const properties = joined.split(splitted[0]).join("").split('And')
-        const queryConnectors = []
-        connectors.forEach(con => {
-          if (n.includes(con)) {
-            queryConnectors.push(con)
-          }
-        })
-        const query = { where: {}, include: {all: true}}
+        const query = { where: {}, include: { all: true } }
         for (let i = 0; i < args.length; i++) {
           if (Array.isArray(args[i])) {
-            query.where[properties[i]] = { in: args[i]}
+            query.where[properties[i]] = { in: args[i] }
             continue
           }
           query.where[properties[i]] = args[i]
@@ -54,7 +48,7 @@ const initNamedQueries = (that) => {
  */
 class SQRepository {
   constructor(clazz, model, primaryKey = 'id') {
-    if (this.constructor === BaseRepository) throw new Error('Can not instantiate an abstract class')
+    if (this.constructor === SQRepository) throw new Error('Can not instantiate an abstract class')
     this.primaryKey = primaryKey
     this.clazz = clazz
     this.model = model

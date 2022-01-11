@@ -1,0 +1,19 @@
+{
+  "name": "sequelize-query",
+  "version": "1.0.0",
+  "description": "Implementation of repository pattern for sequelize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianfrangella/sequelize-query.git"
+  },
+  "author": "Fabian Frangella",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabianfrangella/sequelize-query/issues"
+  },
+  "homepage": "https://github.com/fabianfrangella/sequelize-query#readme"
+}
