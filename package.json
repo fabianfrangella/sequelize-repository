@@ -1,5 +1,5 @@
 {
-  "name": "sequelize-query",
+  "name": "sequelize-repository",
   "version": "1.0.0",
   "description": "Implementation of repository pattern for sequelize",
   "main": "index.js",
