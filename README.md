@@ -7,7 +7,9 @@ sequelize-repository is a simple implementation of the repository pattern for se
 - [Criteria](#Criteria)
 - [TransactionRunner](#TransactionRunner)
 
-#SQRepository
+
+
+### SQRepository
 The SQRepository is the entry point to the library, it contains all repository methods, you must extend from this class to use it.
 
 ###Example: 
@@ -22,8 +24,6 @@ const repository = new MyRepository()
 
 const entities = await this.repository.findById(1)
 ```
-
-### SQRepository
 The SQRepository contains the following methods:
 ```
 save(model,t)
