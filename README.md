@@ -12,7 +12,7 @@ sequelize-repository is a simple implementation of the repository pattern for se
 ### SQRepository
 The SQRepository is the entry point to the library, it contains all repository methods, you must extend from this class to use it.
 
-###Example: 
+Example: 
 ```
 class MyRepository extends SQRepository {
     constructor() {
