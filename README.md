@@ -3,7 +3,7 @@ sequelize-repository is a simple implementation of the repository pattern for se
 
 # Table of contents
 - [SQRepository](#SQRepository)
-- [Named Queries](#Named Queries)
+- [Named Queries](#NamedQueries)
 - [Criteria](#Criteria)
 
 #SQRepository
