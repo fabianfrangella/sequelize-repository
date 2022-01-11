@@ -16,7 +16,7 @@ const pagination = {
   },
 }
 
-const initNamedQueries = (that) => {
+const initNamedQueries = (that, model) => {
   Object.getOwnPropertyNames(that.clazz.prototype).forEach(n => {
     if (n.startsWith("findBy") || n.startsWith("findAllBy")) {
       that[n] = function(...args) {
@@ -52,7 +52,7 @@ class SQRepository {
     this.primaryKey = primaryKey
     this.clazz = clazz
     this.model = model
-    initNamedQueries(this)
+    initNamedQueries(this, model)
   }
 
   /**
