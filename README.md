@@ -71,7 +71,7 @@ const criteria = builder.add('client_id', clientId, { [Op.eq]: clientId })
    .build()
 criteria.getCriteria() // { client_id:  { [Op.eq]: 1234 }, created_date: { [Op.eq]: 10/10/2021 } ...}
 ```
-###TransactionRunner
+### TransactionRunner
 The transaction runner is a solution to handle the sequelize transactions in just one place.
 In order to use the "save" method of the repository you must execute it inside a transaction.
 Example:
