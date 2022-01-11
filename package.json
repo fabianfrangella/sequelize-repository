@@ -4,7 +4,7 @@
   "description": "Implementation of repository pattern for sequelize",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/fabianfrangella/sequelize-repository/issues"
   },
-  "homepage": "https://github.com/fabianfrangella/sequelize-repository#readme"
+  "homepage": "https://github.com/fabianfrangella/sequelize-repository#readme",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "jest": "^27.4.7",
+    "sequelize-mock": "^0.10.2"
+  }
 }
