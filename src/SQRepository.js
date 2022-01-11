@@ -16,6 +16,32 @@ const pagination = {
   },
 }
 
+const initNamedQueries = (that) => {
+  Object.getOwnPropertyNames(that.clazz.prototype).forEach(n => {
+    if (n.startsWith("findBy") || n.startsWith("findAllBy")) {
+      that[n] = function(...args) {
+        const splitted = n.split("By")
+        const joined = splitted.join("")
+        const properties = joined.split(splitted[0]).join("").split('And')
+        const queryConnectors = []
+        connectors.forEach(con => {
+          if (n.includes(con)) {
+            queryConnectors.push(con)
+          }
+        })
+        const query = { where: {}, include: {all: true}}
+        for (let i = 0; i < args.length; i++) {
+          if (Array.isArray(args[i])) {
+            query.where[properties[i]] = { in: args[i]}
+            continue
+          }
+          query.where[properties[i]] = args[i]
+        }
+        return model.findAll(query)
+      }
+    }
+  })
+}
 /**
  * @summary Abstract repository for Sequelize entities with all basic persistence methods
  * In order to use this class you must extend from it and instantiate it with the corresponding model and the name of the primary key
@@ -32,30 +58,7 @@ class SQRepository {
     this.primaryKey = primaryKey
     this.clazz = clazz
     this.model = model
-    Object.getOwnPropertyNames(this.clazz.prototype).forEach(n => {
-      if (n.startsWith("findBy") || n.startsWith("findAllBy")) {
-        this[n] = function(...args) {
-          const splitted = n.split("By")
-          const joined = splitted.join("")
-          const properties = joined.split(splitted[0]).join("").split('And')
-          const queryConnectors = []
-          connectors.forEach(con => {
-            if (n.includes(con)) {
-              queryConnectors.push(con)
-            }
-          })
-          const query = { where: {}, include: {all: true}}
-          for (let i = 0; i < args.length; i++) {
-            if (Array.isArray(args[i])) {
-              query.where[properties[i]] = { in: args[i]}
-              continue
-            }
-            query.where[properties[i]] = args[i]
-          }
-          return model.findAll(query)
-        }
-      }
-    })
+    initNamedQueries(this)
   }
 
   /**
