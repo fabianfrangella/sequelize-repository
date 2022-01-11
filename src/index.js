@@ -1,5 +1,8 @@
-const SQRepository = require('../src/SQRepository')
+const SQRepository = require('./repository/SQRepository')
+const { Criteria, CriteriaBuilder } = require('./query/Criteria')
 
 module.exports = {
-    SQRepository
+    SQRepository,
+    Criteria,
+    CriteriaBuilder,
 }
