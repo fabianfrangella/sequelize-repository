@@ -51,3 +51,22 @@ const repository = new MyRepository()
     
 const entities = await this.repository.findAllByNameAndEmail("John", "Doe")
 ```
+
+### Criteria
+Criteria is a class that represents sequelize queries in a simpler way, the CriteriaBuilder is used to build complex criterias easily. There are methods of the repository that expect a Criteria Object
+Examples:
+```
+const { Op } = require('sequelize')
+const criteria = new Criteria([{ field: 'client_id', value: 1234, condition: { [Op.eq]: 1234 }])
+criteria.getCriteria() // -> { client_id: { [Op.eq] : 1234 } }
+await myRepository.findAllWhere(criteria) // -> [{ client_id: 1234 }]
+```
+```
+const builder = new CriteriaBuilder()
+const criteria = builder.add('client_id', clientId, { [Op.eq]: clientId })
+   .add('created_date', fromDate, { [Op.eq]: clientId })
+   .add('status', 'FAILURE', { [Op.ne]: 'FAILURE' })
+   .add('request_id', null, { [Op.ne]: null })
+   .build()
+criteria.getCriteria() // { client_id:  { [Op.eq]: 1234 }, created_date: { [Op.eq]: 10/10/2021 } ...}
+```
