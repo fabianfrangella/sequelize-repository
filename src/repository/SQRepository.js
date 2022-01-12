@@ -67,7 +67,6 @@ class SQRepository {
     if (model.dataValues) {
       val = { ...model.dataValues }
     }
-    if (!val[this.primaryKey]) val[this.primaryKey] = uuidv4().replace(/-/g, '')
     const res = await this.model.upsert({ ...val, updated_date: new Date() }, { transaction: t })
     return res[1] ? res[0] : null
   }
