@@ -35,6 +35,7 @@ const initNamedQueries = (that, model) => {
       }
       if (n.slice(-9) === 'Paginated') {
         that[n] = async function(page = 0, size = 10,...args) {
+          n = n.slice(0, -9)
           const query = buildQuery(...args)
           const { limit, offset } = pagination.getPagination(page, size)
           const response = await model.findAndCountAll({
