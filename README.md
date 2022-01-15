@@ -44,6 +44,7 @@ Named queries are and easy way to generate simple queries without almost any cod
 | :---        | :---                |:---                                                                                |:----
 | And         | findAllByNameAndRole|`model.findAll({ where: { name, role }, include: { all: true } })`                  | ```[{entity}]```
 | Paginated   | findByNamePaginated |`model.findAndCountAll({ where: { name }, limit, offset, include: { all: true } })` | ```{ totalItems: 10, rows: [{entity}], totalPages: 15, currentPage: 0 }```
+
 Example:
 ```
 class MyRepository extends SQRepository {
