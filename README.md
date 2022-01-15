@@ -3,7 +3,7 @@ sequelize-repository is a simple implementation of the repository pattern for se
 
 # Table of contents
 - [SQRepository](#SQRepository)
-- [Named Queries](#Named-Queries)
+- [Query Methods](#Query-Methods)
 - [Criteria](#Criteria)
 - [TransactionRunner](#TransactionRunner)
 
@@ -36,8 +36,8 @@ findById(id)
 sum(field, criteria)
 ```
 
-### Named-Queries
-Named queries are and easy way to generate simple queries without almost any code. You just have to write the method signature and parameters and SQRepository will do the rest.
+### Query-Methods
+Query methods are and easy way to generate simple queries without almost any code. You just have to write the method signature and parameters and SQRepository will do the rest.
 
 
 | Keyword     | Sample              | Sequelize Snippet                                                                  | Returns
