@@ -19,10 +19,14 @@ const pagination = {
 const initNamedQueries = (that, model) => {
   Object.getOwnPropertyNames(that.clazz.prototype).forEach(n => {
     if (n.startsWith("findBy") || n.startsWith("findAllBy")) {
-      const buildQuery = (...args) => {
-        const splitted = n.split("By")
-        const joined = splitted.join("")
-        const properties = joined.split(splitted[0]).join("").split('And')
+      const buildQuery = (slice,...args) => {
+        const splitted = slice
+            ? n.slice(0, slice).split("By")
+            : n.split("By")
+        const properties = splitted.join("")
+            .split(splitted[0])
+            .join("")
+            .split('And')
         const query = { where: {}, include: { all: true } }
         for (let i = 0; i < args.length; i++) {
           if (Array.isArray(args[i])) {
@@ -35,8 +39,7 @@ const initNamedQueries = (that, model) => {
       }
       if (n.slice(-9) === 'Paginated') {
         that[n] = async function(page = 0, size = 10,...args) {
-          n = n.slice(0, -9)
-          const query = buildQuery(...args)
+          const query = buildQuery(-9, ...args)
           const { limit, offset } = pagination.getPagination(page, size)
           const response = await model.findAndCountAll({
             where: query.where, limit, offset, include: { all: true },
