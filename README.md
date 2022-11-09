@@ -99,7 +99,7 @@ const runTransaction = async (callback) => {
 
 ```
 
-```javscript
+```javascript
 
 import { runTransaction } from 'wrapper'
 
