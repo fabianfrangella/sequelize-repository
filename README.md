@@ -37,13 +37,20 @@ sum(field, criteria)
 ```
 
 ### Query-Methods
-Query methods are and easy way to generate simple queries without almost any code. You just have to write the method signature and parameters and SQRepository will do the rest.
+The Query methods api is an easy way to generate simple queries without almost any code. You just have to write the method signature and parameters and SQRepository will autogenerate the required code for you.
 
 
 | Keyword     | Sample              | Sequelize Snippet                                                                  | Returns
 | :---        | :---                |:---                                                                                |:----
 | And         | findAllByNameAndRole|`model.findAll({ where: { name, role }, include: { all: true } })`                  | ```[{entity}]```
 | Paginated   | findByNamePaginated |`model.findAndCountAll({ where: { name }, limit, offset, include: { all: true } })` | ```{ totalItems: 10, rows: [{entity}], totalPages: 15, currentPage: 0 }```
+
+NOTE: The following keywords are going to be added in future releases:
+
+- Or
+- Any
+- Exists
+- Between
 
 Example:
 ```javascript
