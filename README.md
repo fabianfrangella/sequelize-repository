@@ -92,8 +92,19 @@ Ideally you would wrap this runner to not import the db across many different fi
 ```javascript
 const db = require('../models')
 
-const runner = async (callback) => {
+const runTransaction = async (callback) => {
     const result = await TransactionRunner.run(db, callback);
     return result;
 } 
+
+```
+
+```javscript
+
+import { runTransaction } from 'wrapper'
+
+const result = await runTransaction(async (t) => {
+    const entity = await repository.save({ id: 1, name: 'John', lastName: 'Doe' }, t)
+    return entity;
+})
 ```
