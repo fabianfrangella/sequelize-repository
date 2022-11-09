@@ -56,7 +56,7 @@ class MyRepository extends SQRepository {
 
 const repository = new MyRepository()
     
-const entities = await this.repository.findAllByNameAndEmail("John", "Doe")
+const entities = await this.repository.findAllByNameAndEmail("John", "johndoe@gmail.com")
 ```
 
 ### Criteria
